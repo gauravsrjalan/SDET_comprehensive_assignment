@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "618c6d76-e61d-41af-95b0-1752ea4c7f61",
+		"name": "University API tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30124136",
+		"_collection_link": "https://bold-capsule-651270.postman.co/workspace/New-Team-Workspace~84dbbac8-a34e-4557-914f-1fb81e065d94/collection/30124136-618c6d76-e61d-41af-95b0-1752ea4c7f61?action=share&source=collection_link&creator=30124136"
+	},
+	"item": [
+		{
+			"name": "positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"University name is present in response\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"University of California\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://universities.hipolabs.com/search?country=United+States",
+					"protocol": "http",
+					"host": [
+						"universities",
+						"hipolabs",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "United+States"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "negative",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404 for an invalid country\", function(){\r",
+							"pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"University name is present in response\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"University of xyz\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://universities.hipolabs.com/search?country=United+States",
+					"protocol": "http",
+					"host": [
+						"universities",
+						"hipolabs",
+						"com"
+					],
+					"path": [
+						"search"
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "United+States"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
